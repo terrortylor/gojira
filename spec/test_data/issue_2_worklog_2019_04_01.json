@@ -1,0 +1,278 @@
+{
+  "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+  "id": "53613",
+  "self": "https://atlassian.net/rest/api/3/issue/53613",
+  "key": "KEY-001",
+  "fields": {
+    "resolution": null,
+    "lastViewed": "2019-04-03T13:08:46.246-0500",
+    "labels": [
+
+    ],
+    "aggregatetimeoriginalestimate": null,
+    "issuelinks": [
+
+    ],
+    "assignee": {
+      "self": "https://atlassian.net/rest/api/3/user?accountId=123abc123-987hgf123",
+      "name": "alex.tylor",
+      "key": "alex.tylor",
+      "accountId": "123abc123-987hgf123",
+      "emailAddress": "alex.tylor@e2x.co.uk",
+      "avatarUrls": {
+        "48x48": "https://avatar-cdn.atlassian.com/1c60e40e6bbf0a4489ed33cbb3e4a714?s=48&d=https%3A%2F%2Fsecure.gravatar.com%2Favatar%2F1c60e40e6bbf0a4489ed33cbb3e4a714%3Fd%3Dmm%26s%3D48%26noRedirect%3Dtrue",
+        "24x24": "https://avatar-cdn.atlassian.com/1c60e40e6bbf0a4489ed33cbb3e4a714?s=24&d=https%3A%2F%2Fsecure.gravatar.com%2Favatar%2F1c60e40e6bbf0a4489ed33cbb3e4a714%3Fd%3Dmm%26s%3D24%26noRedirect%3Dtrue",
+        "16x16": "https://avatar-cdn.atlassian.com/1c60e40e6bbf0a4489ed33cbb3e4a714?s=16&d=https%3A%2F%2Fsecure.gravatar.com%2Favatar%2F1c60e40e6bbf0a4489ed33cbb3e4a714%3Fd%3Dmm%26s%3D16%26noRedirect%3Dtrue",
+        "32x32": "https://avatar-cdn.atlassian.com/1c60e40e6bbf0a4489ed33cbb3e4a714?s=32&d=https%3A%2F%2Fsecure.gravatar.com%2Favatar%2F1c60e40e6bbf0a4489ed33cbb3e4a714%3Fd%3Dmm%26s%3D32%26noRedirect%3Dtrue"
+      },
+      "displayName": "Alex Tylor",
+      "active": true,
+      "timeZone": "England/YEAHBOI",
+      "accountType": "atlassian"
+    },
+    "components": [
+
+    ],
+    "reporter": {
+      "self": "https://atlassian.net/rest/api/3/user?accountId=123abc123-987hgf123",
+      "name": "alex.tylor",
+      "key": "alex.tylor",
+      "accountId": "123abc123-987hgf123",
+      "emailAddress": "alex.tylor@e2x.co.uk",
+      "avatarUrls": {
+        "48x48": "https://avatar-cdn.atlassian.com/1c60e40e6bbf0a4489ed33cbb3e4a714?s=48&d=https%3A%2F%2Fsecure.gravatar.com%2Favatar%2F1c60e40e6bbf0a4489ed33cbb3e4a714%3Fd%3Dmm%26s%3D48%26noRedirect%3Dtrue",
+        "24x24": "https://avatar-cdn.atlassian.com/1c60e40e6bbf0a4489ed33cbb3e4a714?s=24&d=https%3A%2F%2Fsecure.gravatar.com%2Favatar%2F1c60e40e6bbf0a4489ed33cbb3e4a714%3Fd%3Dmm%26s%3D24%26noRedirect%3Dtrue",
+        "16x16": "https://avatar-cdn.atlassian.com/1c60e40e6bbf0a4489ed33cbb3e4a714?s=16&d=https%3A%2F%2Fsecure.gravatar.com%2Favatar%2F1c60e40e6bbf0a4489ed33cbb3e4a714%3Fd%3Dmm%26s%3D16%26noRedirect%3Dtrue",
+        "32x32": "https://avatar-cdn.atlassian.com/1c60e40e6bbf0a4489ed33cbb3e4a714?s=32&d=https%3A%2F%2Fsecure.gravatar.com%2Favatar%2F1c60e40e6bbf0a4489ed33cbb3e4a714%3Fd%3Dmm%26s%3D32%26noRedirect%3Dtrue"
+      },
+      "displayName": "Alex Tylor",
+      "active": true,
+      "timeZone": "England/YEAHBOI",
+      "accountType": "atlassian"
+    },
+    "progress": {
+      "progress": 0,
+      "total": 0
+    },
+    "votes": {
+      "self": "https://atlassian.net/rest/api/3/issue/KEY-01/votes",
+      "votes": 0,
+      "hasVoted": false
+    },
+    "worklog": {
+      "startAt": 0,
+      "maxResults": 20,
+      "total": 2,
+      "worklogs": [
+        {
+          "self": "https://atlassian.net/rest/api/3/issue/48698/worklog/51248",
+          "author": {
+            "self": "https://atlassian.net/rest/api/3/user?accountId=123abc123-987hgf123",
+            "name": "alex.tylor",
+            "key": "alex.tylor",
+            "accountId": "123abc123-987hgf123",
+            "emailAddress": "alex.tylor@e2x.co.uk",
+            "avatarUrls": {
+              "48x48": "https://avatar-cdn.atlassian.com/1c60e40e6bbf0a4489ed33cbb3e4a714?s=48&d=https%3A%2F%2Fsecure.gravatar.com%2Favatar%2F1c60e40e6bbf0a4489ed33cbb3e4a714%3Fd%3Dmm%26s%3D48%26noRedirect%3Dtrue",
+              "24x24": "https://avatar-cdn.atlassian.com/1c60e40e6bbf0a4489ed33cbb3e4a714?s=24&d=https%3A%2F%2Fsecure.gravatar.com%2Favatar%2F1c60e40e6bbf0a4489ed33cbb3e4a714%3Fd%3Dmm%26s%3D24%26noRedirect%3Dtrue",
+              "16x16": "https://avatar-cdn.atlassian.com/1c60e40e6bbf0a4489ed33cbb3e4a714?s=16&d=https%3A%2F%2Fsecure.gravatar.com%2Favatar%2F1c60e40e6bbf0a4489ed33cbb3e4a714%3Fd%3Dmm%26s%3D16%26noRedirect%3Dtrue",
+              "32x32": "https://avatar-cdn.atlassian.com/1c60e40e6bbf0a4489ed33cbb3e4a714?s=32&d=https%3A%2F%2Fsecure.gravatar.com%2Favatar%2F1c60e40e6bbf0a4489ed33cbb3e4a714%3Fd%3Dmm%26s%3D32%26noRedirect%3Dtrue"
+            },
+            "displayName": "Alex Tylor",
+            "active": true,
+            "timeZone": "America/Chicago",
+            "accountType": "atlassian"
+          },
+          "updateAuthor": {
+            "self": "https://atlassian.net/rest/api/3/user?accountId=123abc123-987hgf123",
+            "name": "alex.tylor",
+            "key": "alex.tylor",
+            "accountId": "123abc123-987hgf123",
+            "emailAddress": "alex.tylor@e2x.co.uk",
+            "avatarUrls": {
+              "48x48": "https://avatar-cdn.atlassian.com/1c60e40e6bbf0a4489ed33cbb3e4a714?s=48&d=https%3A%2F%2Fsecure.gravatar.com%2Favatar%2F1c60e40e6bbf0a4489ed33cbb3e4a714%3Fd%3Dmm%26s%3D48%26noRedirect%3Dtrue",
+              "24x24": "https://avatar-cdn.atlassian.com/1c60e40e6bbf0a4489ed33cbb3e4a714?s=24&d=https%3A%2F%2Fsecure.gravatar.com%2Favatar%2F1c60e40e6bbf0a4489ed33cbb3e4a714%3Fd%3Dmm%26s%3D24%26noRedirect%3Dtrue",
+              "16x16": "https://avatar-cdn.atlassian.com/1c60e40e6bbf0a4489ed33cbb3e4a714?s=16&d=https%3A%2F%2Fsecure.gravatar.com%2Favatar%2F1c60e40e6bbf0a4489ed33cbb3e4a714%3Fd%3Dmm%26s%3D16%26noRedirect%3Dtrue",
+              "32x32": "https://avatar-cdn.atlassian.com/1c60e40e6bbf0a4489ed33cbb3e4a714?s=32&d=https%3A%2F%2Fsecure.gravatar.com%2Favatar%2F1c60e40e6bbf0a4489ed33cbb3e4a714%3Fd%3Dmm%26s%3D32%26noRedirect%3Dtrue"
+            },
+            "displayName": "Alex Tylor",
+            "active": true,
+            "timeZone": "London/YEAHBOI",
+            "accountType": "atlassian"
+          },
+          "created": "2019-04-01T10:28:08.648-0500",
+          "updated": "2019-04-01T10:28:08.648-0500",
+          "started": "2019-04-01T10:28:00.000-0500",
+          "timeSpent": "15m",
+          "timeSpentSeconds": 900,
+          "id": "51248",
+          "issueId": "48698"
+        },
+        {
+          "self": "https://atlassian.net/rest/api/3/issue/48698/worklog/51248",
+          "author": {
+            "self": "https://atlassian.net/rest/api/3/user?accountId=123abc123-987hgf123",
+            "name": "alex.tylor",
+            "key": "alex.tylor",
+            "accountId": "123abc123-987hgf123",
+            "emailAddress": "alex.tylor@e2x.co.uk",
+            "avatarUrls": {
+              "48x48": "https://avatar-cdn.atlassian.com/1c60e40e6bbf0a4489ed33cbb3e4a714?s=48&d=https%3A%2F%2Fsecure.gravatar.com%2Favatar%2F1c60e40e6bbf0a4489ed33cbb3e4a714%3Fd%3Dmm%26s%3D48%26noRedirect%3Dtrue",
+              "24x24": "https://avatar-cdn.atlassian.com/1c60e40e6bbf0a4489ed33cbb3e4a714?s=24&d=https%3A%2F%2Fsecure.gravatar.com%2Favatar%2F1c60e40e6bbf0a4489ed33cbb3e4a714%3Fd%3Dmm%26s%3D24%26noRedirect%3Dtrue",
+              "16x16": "https://avatar-cdn.atlassian.com/1c60e40e6bbf0a4489ed33cbb3e4a714?s=16&d=https%3A%2F%2Fsecure.gravatar.com%2Favatar%2F1c60e40e6bbf0a4489ed33cbb3e4a714%3Fd%3Dmm%26s%3D16%26noRedirect%3Dtrue",
+              "32x32": "https://avatar-cdn.atlassian.com/1c60e40e6bbf0a4489ed33cbb3e4a714?s=32&d=https%3A%2F%2Fsecure.gravatar.com%2Favatar%2F1c60e40e6bbf0a4489ed33cbb3e4a714%3Fd%3Dmm%26s%3D32%26noRedirect%3Dtrue"
+            },
+            "displayName": "Alex Tylor",
+            "active": true,
+            "timeZone": "America/Chicago",
+            "accountType": "atlassian"
+          },
+          "updateAuthor": {
+            "self": "https://atlassian.net/rest/api/3/user?accountId=123abc123-987hgf123",
+            "name": "alex.tylor",
+            "key": "alex.tylor",
+            "accountId": "123abc123-987hgf123",
+            "emailAddress": "alex.tylor@e2x.co.uk",
+            "avatarUrls": {
+              "48x48": "https://avatar-cdn.atlassian.com/1c60e40e6bbf0a4489ed33cbb3e4a714?s=48&d=https%3A%2F%2Fsecure.gravatar.com%2Favatar%2F1c60e40e6bbf0a4489ed33cbb3e4a714%3Fd%3Dmm%26s%3D48%26noRedirect%3Dtrue",
+              "24x24": "https://avatar-cdn.atlassian.com/1c60e40e6bbf0a4489ed33cbb3e4a714?s=24&d=https%3A%2F%2Fsecure.gravatar.com%2Favatar%2F1c60e40e6bbf0a4489ed33cbb3e4a714%3Fd%3Dmm%26s%3D24%26noRedirect%3Dtrue",
+              "16x16": "https://avatar-cdn.atlassian.com/1c60e40e6bbf0a4489ed33cbb3e4a714?s=16&d=https%3A%2F%2Fsecure.gravatar.com%2Favatar%2F1c60e40e6bbf0a4489ed33cbb3e4a714%3Fd%3Dmm%26s%3D16%26noRedirect%3Dtrue",
+              "32x32": "https://avatar-cdn.atlassian.com/1c60e40e6bbf0a4489ed33cbb3e4a714?s=32&d=https%3A%2F%2Fsecure.gravatar.com%2Favatar%2F1c60e40e6bbf0a4489ed33cbb3e4a714%3Fd%3Dmm%26s%3D32%26noRedirect%3Dtrue"
+            },
+            "displayName": "Alex Tylor",
+            "active": true,
+            "timeZone": "London/YEAHBOI",
+            "accountType": "atlassian"
+          },
+          "created": "2019-03-01T10:28:08.648-0500",
+          "updated": "2019-03-01T10:28:08.648-0500",
+          "started": "2019-03-01T10:26:00.000-0500",
+          "timeSpent": "45m",
+          "timeSpentSeconds": 2700,
+          "id": "51248",
+          "issueId": "48698"
+        }
+      ]
+    },
+    "issuetype": {
+      "self": "https://atlassian.net/rest/api/3/issuetype/10001",
+      "id": "10001",
+      "description": "A user story. Created by Jira Software - do not edit or delete.",
+      "iconUrl": "https://atlassian.net/secure/viewavatar?size=xsmall&avatarId=10315&avatarType=issuetype",
+      "name": "Story",
+      "subtask": false,
+      "avatarId": 10315
+    },
+    "project": {
+      "self": "https://atlassian.net/rest/api/3/project/10014",
+      "id": "10014",
+      "key": "KEY",
+      "name": "Services",
+      "projectTypeKey": "software",
+      "avatarUrls": {
+        "48x48": "https://atlassian.net/secure/projectavatar?pid=10014&avatarId=10532",
+        "24x24": "https://atlassian.net/secure/projectavatar?size=small&pid=10014&avatarId=10532",
+        "16x16": "https://atlassian.net/secure/projectavatar?size=xsmall&pid=10014&avatarId=10532",
+        "32x32": "https://atlassian.net/secure/projectavatar?size=medium&pid=10014&avatarId=10532"
+      },
+      "projectCategory": {
+        "self": "https://atlassian.net/rest/api/3/projectCategory/10004",
+        "id": "10004",
+        "description": "",
+        "name": "Internal"
+      }
+    },
+    "resolutiondate": null,
+    "watches": {
+      "self": "https://atlassian.net/rest/api/3/issue/KEY-01/watchers",
+      "watchCount": 1,
+      "isWatching": true
+    },
+    "customfield_10019": null,
+    "updated": "2019-04-03T08:32:22.662-0500",
+    "timeoriginalestimate": null,
+    "description": {
+      "version": 1,
+      "type": "doc",
+      "content": [
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "DO SOME BLOODY WORK"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "NO MORE JOBS!"
+            }
+          ]
+        }
+      ]
+    },
+    "timetracking": {
+    },
+    "summary": "This is a test issues!",
+    "duedate": null,
+    "comment": {
+      "comments": [
+
+      ],
+      "maxResults": 0,
+      "total": 0,
+      "startAt": 0
+    },
+    "fixVersions": [
+
+    ],
+    "priority": {
+      "self": "https://atlassian.net/rest/api/3/priority/3",
+      "iconUrl": "https://atlassian.net/images/icons/priorities/major.svg",
+      "name": "Major",
+      "id": "3"
+    },
+    "status": {
+      "self": "https://atlassian.net/rest/api/3/status/10000",
+      "description": "",
+      "iconUrl": "https://atlassian.net/",
+      "name": "To Do",
+      "id": "10000",
+      "statusCategory": {
+        "self": "https://atlassian.net/rest/api/3/statuscategory/2",
+        "id": 2,
+        "key": "new",
+        "colorName": "blue-gray",
+        "name": "To Do"
+      }
+    },
+    "aggregatetimeestimate": null,
+    "creator": {
+      "self": "https://atlassian.net/rest/api/3/user?accountId=123abc123-987hgf123",
+      "name": "alex.tylor",
+      "key": "alex.tylor",
+      "accountId": "123abc123-987hgf123",
+      "emailAddress": "user@widget.com",
+      "avatarUrls": {
+        "48x48": "https://placekitten.com/200/300"
+      },
+      "displayName": "Alex Tylor",
+      "active": true,
+      "timeZone": "England/YEAHBOI",
+      "accountType": "atlassian"
+    },
+    "aggregateprogress": {
+      "progress": 900,
+      "total": 900,
+      "percent": 100
+    },
+    "timespent": 900,
+    "aggregatetimespent": 900,
+    "workratio": -1,
+    "created": "2019-04-03T08:32:22.662-0500"
+  }
+}

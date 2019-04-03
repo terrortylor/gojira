@@ -1,6 +1,7 @@
 require 'config'
+require 'rspec'
 
-RSpec.describe Config do
+describe Config do
   context "file doesn't exist" do
     it "Should raise an error if file doesn't exist" do
       allow(File).to receive(:expand_path).with('~/.gojira.yml').and_return('/users/user/.gojira.yml')
@@ -17,6 +18,7 @@ RSpec.describe Config do
 
     it 'Should return YML object with configuration in' do
       config = Config.instance.config
+
       expect(config['jira']['host']).to eq('https://jira.com')
       expect(config['jira']['username']).to eq('user@widget.com')
       expect(config['jira']['api_key']).to eq('123abc')
@@ -24,6 +26,7 @@ RSpec.describe Config do
 
     it 'Should return correct values with specific get methods' do
       config = Config.instance
+
       expect(config.jira_host).to eq('https://jira.com')
       expect(config.jira_username).to eq('user@widget.com')
       expect(config.jira_api_key).to eq('123abc')
