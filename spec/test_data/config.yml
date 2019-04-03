@@ -1,0 +1,5 @@
+---
+jira:
+  host: 'https://jira.com'
+  username: user@widget.com
+  api_key: 123abc
