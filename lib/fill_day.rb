@@ -30,11 +30,11 @@ class FillDay
     puts "Day Summary: #{@date}"
     puts "Found Issues: #{issues.size}"
     issues.each do |issue|
-      puts "\tKey: #{issue.key} Summary: #{issue.summary} Time booked: #{seconds_to_time(issue.time_booked)}"
+      puts "\tKey: #{issue.key}\tSummary: #{issue.summary} Time booked: #{seconds_to_time(issue.time_booked)}"
     end
-    puts "Total time booked: #{seconds_to_time(@total_seconds)}"
-    puts "Total time to book: #{seconds_to_time(SECONDS_IN_DAY)}"
-    puts "Missing time: #{seconds_to_time(@missing_seconds)}"
+    puts "Total time booked:\t#{seconds_to_time(@total_seconds)}"
+    puts "Total time to book:\t#{seconds_to_time(SECONDS_IN_DAY)}"
+    puts "Missing time:\t\t#{seconds_to_time(@missing_seconds)}"
   end
 
   def request_issue(key)
