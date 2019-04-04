@@ -1,7 +1,7 @@
 require 'rubygems'
 require './lib/config'
 require './lib/jira_request'
-require './lib/fill_day'
+require './lib/jira_day'
 
 config = Config.instance
 # infra_meetings = 'ISD-2087'
@@ -24,5 +24,5 @@ jira_request = JiraRequest.new(config.jira_host, config.jira_username, config.ji
 # end
 # puts JSON.pretty_generate(body)
 
-fill_day = FillDay.new(jira_request, '2019/04/04')
+fill_day = JiraDay.new(jira_request, '2019/04/04')
 fill_day.calculate_missing_time

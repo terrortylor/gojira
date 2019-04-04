@@ -1,11 +1,11 @@
-require 'fill_day'
+require 'jira_day'
 require 'jira_request'
 require 'rspec'
 
-describe FillDay do
+describe JiraDay do
   let(:test_date) { '2019/04/01' }
   let(:jira_request_double) { double('JiraRequest') }
-  let(:test_obj) { FillDay.new(jira_request_double, test_date) }
+  let(:test_obj) { JiraDay.new(jira_request_double, test_date) }
 
   context 'initialize' do
     it 'Should raise exception when search not 200' do
