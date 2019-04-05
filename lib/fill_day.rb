@@ -27,7 +27,7 @@ class FillDay
   end
 
   def print_booked_summary(issues)
-    puts "Day Summary: #{@date}"
+    puts "Day Summary:  #{@date}"
     puts "Found Issues: #{issues.size}"
     issues.each do |issue|
       puts "\tKey: #{issue.key}\tSummary: #{issue.summary} Time booked: #{seconds_to_time(issue.time_booked)}"
