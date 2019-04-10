@@ -17,12 +17,28 @@ bundle exec rake
 ## Config File
 Depends on having a username and API key to work with Atlassian, these are loaded from a config file: ~/.gojira.yml
 ```
----
 jira:
   host: 'https://jira.com'
   username: user@widget.com
   api_key: 123abc
+  daily_tasks:
+      - name: Infra Standup
+        issue_key: KEY-99
+        time: 15m
+  bucket_tasks:
+    - name: Done work
+      issue_key: KEY-10
+      weight: 5
+    - name: Not done work
+      issue_key: KEY-20
+      weight: 1
 ```
+Daily tasks are booked if time hasn't already been booked against them.
+The remaining time is booked to the bucket tasks in 15m intervals.
+The weighting indicates how to split the time, i.e.:
+With 3 hours to book:
+ - Done work: 2h 30m
+ - Not done work: 30m
 
 ## Get Summary of a given Day
 The following is an example of calculatng a summary of time booked to a day:
