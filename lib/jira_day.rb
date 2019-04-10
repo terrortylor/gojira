@@ -7,12 +7,13 @@ class JiraDay
   Issue = Struct.new(:key, :summary, :time_booked)
   attr_reader :date, :issues, :total_seconds, :missing_seconds
 
-  def initialize(jira_request, date)
+  def initialize(jira_request, date, email_address)
     @jira_request = jira_request
     # Convert data format from d/m/Y to Y/m/d
     @date = Date.strptime(date, '%d/%m/%Y').strftime('%Y/%m/%d')
     @issues = []
     @total_seconds = 0
+    @email_address = email_address
     @missing_seconds = SECONDS_IN_DAY
   end
 
@@ -65,7 +66,7 @@ class JiraDay
     issue_worklog['worklogs'].each do |worklog|
       date = DateTime.parse(worklog['started'])
       formatted_date = date.strftime('%Y/%m/%d')
-      issue_total_seconds += worklog['timeSpentSeconds'] if formatted_date.eql? @date
+      issue_total_seconds += worklog['timeSpentSeconds'] if worklog['author']['emailAddress'].eql?(@email_address) && formatted_date.eql?(@date)
     end
     issue_total_seconds
   end

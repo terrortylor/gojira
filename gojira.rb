@@ -25,8 +25,8 @@ jira_request = JiraRequest.new(config.jira_host, config.jira_username, config.ji
 # end
 # puts JSON.pretty_generate(body)
 
-date = '10/04/2019'
-jira_day = JiraDay.new(jira_request, date)
+date = '9/04/2019'
+jira_day = JiraDay.new(jira_request, date, config.jira_username)
 jira_day.calculate_missing_time
 jira_day.print_booked_summary
 
