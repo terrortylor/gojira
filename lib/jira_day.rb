@@ -9,7 +9,8 @@ class JiraDay
 
   def initialize(jira_request, date)
     @jira_request = jira_request
-    @date = date
+    # Convert data format from d/m/Y to Y/m/d
+    @date = Date.strptime(date, '%d/%m/%Y').strftime('%Y/%m/%d')
     @issues = []
     @total_seconds = 0
     @missing_seconds = SECONDS_IN_DAY
@@ -22,13 +23,13 @@ class JiraDay
     body = JSON.parse(response.body)
     @total_seconds = populate_issues(body)
     @missing_seconds -= @total_seconds
-    print_booked_summary @issues
+    @missing_seconds = 0 if @missing_seconds < 0
   end
 
-  def print_booked_summary(issues)
-    puts "Day Summary:  #{@date}"
-    puts "Found Issues: #{issues.size}"
-    issues.each do |issue|
+  def print_booked_summary
+    puts "Day Summary: #{@date}"
+    puts "Found Issues: #{@issues.size}"
+    @issues.each do |issue|
       puts "\tKey: #{issue.key}\tSummary: #{issue.summary} Time booked: #{seconds_to_time(issue.time_booked)}"
     end
     puts "Total time booked:\t#{seconds_to_time(@total_seconds)}"
@@ -36,8 +37,8 @@ class JiraDay
     puts "Missing time:\t\t#{seconds_to_time(@missing_seconds)}"
   end
 
-  def request_issue(key)
-    response = @jira_request.get_issue(key)
+  def request_issue_worklog(key)
+    response = @jira_request.get_issue_worklog(key)
     raise "Response not 200, can't get issue: #{key}" unless response.code == 200
 
     JSON.parse(response.body)
@@ -50,8 +51,8 @@ class JiraDay
   def populate_issues(body)
     total_seconds = 0
     body['issues'].each do |issue_result|
-      issue = request_issue(issue_result['key'])
-      issue_total_seconds = calculate_worklogs(issue)
+      issue_worklog = request_issue_worklog(issue_result['key'])
+      issue_total_seconds = calculate_worklogs(issue_worklog)
       issue_result = Issue.new(issue_result['key'], issue_result['fields']['summary'], issue_total_seconds)
       @issues.push(issue_result)
       total_seconds += issue_total_seconds
@@ -59,9 +60,9 @@ class JiraDay
     total_seconds
   end
 
-  def calculate_worklogs(issue)
+  def calculate_worklogs(issue_worklog)
     issue_total_seconds = 0
-    issue['fields']['worklog']['worklogs'].each do |worklog|
+    issue_worklog['worklogs'].each do |worklog|
       date = DateTime.parse(worklog['started'])
       formatted_date = date.strftime('%Y/%m/%d')
       issue_total_seconds += worklog['timeSpentSeconds'] if formatted_date.eql? @date

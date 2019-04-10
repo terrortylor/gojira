@@ -5,16 +5,16 @@ require 'uri'
 class JiraRequest
   def initialize(host, username, api_key)
     @host = host
-    @base_headers = { Accept: 'application/json' }
+    @accept_header = { Accept: 'application/json' }
     @basic_auth = { username: username, password: api_key }
   end
 
   def get_issue(issue_id)
-    HTTParty.get(
-      "#{@host}/rest/api/3/issue/#{issue_id}",
-      basic_auth: @basic_auth,
-      headers: @base_headers
-    )
+    get_request_without_query("/rest/api/3/issue/#{issue_id}")
+  end
+
+  def get_issue_worklog(issue_id)
+    get_request_without_query("/rest/api/3/issue/#{issue_id}/worklog")
   end
 
   def tickets_worked_on_this_week
@@ -22,7 +22,7 @@ class JiraRequest
     HTTParty.get(
       "#{@host}/rest/api/3/search",
       basic_auth: @basic_auth,
-      headers: @base_headers,
+      headers: @accept_header,
       query: { jql: query }
     )
   end
@@ -32,8 +32,28 @@ class JiraRequest
     HTTParty.get(
       "#{@host}/rest/api/3/search",
       basic_auth: @basic_auth,
-      headers: @base_headers,
+      headers: @accept_header,
       query: { jql: query }
+    )
+  end
+
+  def book_time_to_issue(key, time, date)
+    response = HTTParty.post(
+      "#{@host}/rest/api/3/issue/#{key}/worklog",
+      basic_auth: @basic_auth,
+      headers: { 'Content-Type': 'application/json' },
+      body: { timeSpentSeconds: time, started: date }.to_json
+    )
+    puts response
+  end
+
+  private
+
+  def get_request_without_query(path)
+    HTTParty.get(
+      "#{@host}#{path}",
+      basic_auth: @basic_auth,
+      headers: @accept_header
     )
   end
 end

@@ -29,4 +29,8 @@ class Config
   def jira_api_key
     @config['jira']['api_key']
   end
+
+  def jira_bucket_tasks
+    @config['jira']['bucket_tasks']
+  end
 end

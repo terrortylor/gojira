@@ -18,3 +18,8 @@ Security/YAMLLoad:
 Style/GuardClause:
   Exclude:
     - 'lib/config.rb'
+
+# Had issues with running code as suggested in compiler
+Style/SymbolProc:
+  Exclude:
+    - 'lib/jira_bucket_tasks.rb'
