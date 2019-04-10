@@ -1,13 +1,13 @@
-require 'jira_request'
+require 'gojira/jira_request'
 require 'rspec'
 
-describe JiraRequest do
+describe Gojira::JiraRequest do
   context 'When valid credentials' do
-    let(:test_obj) { JiraRequest.new('jira.com', 'user@widget.com', '123abc') }
+    let(:test_obj) { Gojira::JiraRequest.new('jira.com', 'user@widget.com', '123abc') }
     let(:auth_and_header) { { basic_auth: { password: '123abc', username: 'user@widget.com' }, headers: { Accept: 'application/json' } } }
 
     it 'Should create new JiraRequest object' do
-      expect(test_obj).to be_instance_of(JiraRequest)
+      expect(test_obj).to be_instance_of(Gojira::JiraRequest)
     end
 
     it 'Should return issue response data when get_issue called' do

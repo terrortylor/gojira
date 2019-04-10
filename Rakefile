@@ -27,4 +27,16 @@ namespace :test do
   end
 end
 
+namespace :gem do
+  desc 'Build the gojira gem'
+  task :build do
+    system 'gem build gojira.gemspec'
+  end
+
+  desc 'Install the gem locally'
+  task :install do
+    system 'gem install gojira --no-doc'
+  end
+end
+
 task default: 'test:all'

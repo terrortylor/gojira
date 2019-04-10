@@ -1,8 +1,8 @@
-require 'jira_bucket_tasks'
-require 'jira_request'
+require 'gojira/jira_bucket_tasks'
+require 'gojira/jira_request'
 require 'rspec'
 
-describe JiraBucketTasks do
+describe Gojira::JiraBucketTasks do
   let(:bucket_config) do
     [
       { 'name' => 'Bucket task 1', 'key' => 'KEY-999', 'weight' => 5 },
@@ -11,7 +11,7 @@ describe JiraBucketTasks do
   end
   let(:test_date) { '1/4/2019' }
   let(:jira_request_double) { double('JiraRequest') }
-  let(:test_obj) { JiraBucketTasks.new(jira_request_double, test_date) }
+  let(:test_obj) { Gojira::JiraBucketTasks.new(jira_request_double, test_date) }
 
   before do
     test_obj.populate_bucket_tasks bucket_config

@@ -1,12 +1,12 @@
-require 'config'
+require 'gojira/config'
 require 'rspec'
 
-describe Config do
+describe Gojira::Config do
   context "file doesn't exist" do
     it "Should raise an error if file doesn't exist" do
       allow(File).to receive(:expand_path).with('~/.gojira.yml').and_return('/users/user/.gojira.yml')
       allow(File).to receive(:read).with('/users/user/.gojira.yml').and_return(nil)
-      expect { Config.instance }.to raise_error('Issue opening config file: /users/user/.gojira.yml')
+      expect { Gojira::Config.instance }.to raise_error('Issue opening config file: /users/user/.gojira.yml')
     end
   end
 
@@ -17,7 +17,7 @@ describe Config do
     end
 
     it 'Should return YML object with configuration in' do
-      config = Config.instance.config
+      config = Gojira::Config.instance.config
 
       expect(config['jira']['host']).to eq('https://jira.com')
       expect(config['jira']['username']).to eq('user@widget.com')
@@ -25,7 +25,7 @@ describe Config do
     end
 
     it 'Should return correct values with specific get methods' do
-      config = Config.instance
+      config = Gojira::Config.instance
 
       expect(config.jira_host).to eq('https://jira.com')
       expect(config.jira_username).to eq('user@widget.com')

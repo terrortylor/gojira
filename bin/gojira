@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+
+require 'gojira/cli'
+
+puts 'go gojira!'
+Gojira::Cli.today_summary
+# case ARGV[0]
+# when 'today_summary'
+#   puts 'unpacking'
+# else
+#   puts "Available methods are 'unpack'"
+# end

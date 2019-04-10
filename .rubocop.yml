@@ -14,12 +14,14 @@ Metrics/BlockLength:
 Security/YAMLLoad:
   Exclude:
     - 'lib/config.rb'
+    - 'lib/gojira/config.rb'
 
 Style/GuardClause:
   Exclude:
     - 'lib/config.rb'
+    - 'lib/gojira/config.rb'
 
-# Had issues with running code as suggested in compiler
 Style/SymbolProc:
   Exclude:
     - 'lib/jira_bucket_tasks.rb'
+    - 'lib/gojira/jira_bucket_tasks.rb'

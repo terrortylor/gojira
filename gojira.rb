@@ -1,12 +1,12 @@
 require 'rubygems'
-require './lib/config'
-require './lib/jira_request'
-require './lib/jira_day'
-require './lib/jira_bucket_tasks'
+require './lib/gojira/config'
+require './lib/gojira/jira_request'
+require './lib/gojira/jira_day'
+require './lib/gojira/jira_bucket_tasks'
 
-config = Config.instance
+config = Gojira::Config.instance
 # infra_meetings = 'ISD-2087'
-jira_request = JiraRequest.new(config.jira_host, config.jira_username, config.jira_api_key)
+jira_request = Gojira::JiraRequest.new(config.jira_host, config.jira_username, config.jira_api_key)
 # response = jira_request.get_issue(infra_meetings)
 # # puts response.code
 # body = JSON.parse(response.body)
@@ -25,12 +25,12 @@ jira_request = JiraRequest.new(config.jira_host, config.jira_username, config.ji
 # end
 # puts JSON.pretty_generate(body)
 
-date = '9/04/2019'
-jira_day = JiraDay.new(jira_request, date, config.jira_username)
+date = '10/04/2019'
+jira_day = Gojira::JiraDay.new(jira_request, date, config.jira_username)
 jira_day.calculate_missing_time
 jira_day.print_booked_summary
 
-fill_day = JiraBucketTasks.new(jira_request, date)
+fill_day = Gojira::JiraBucketTasks.new(jira_request, date)
 fill_day.populate_bucket_tasks(config.jira_bucket_tasks)
 fill_day.fill_day(jira_day.missing_seconds)
 fill_day.print_bucket_summary
