@@ -28,8 +28,6 @@ class JiraBucketTasks
         end
       end
     end
-    sorted_issues.each do |item|
-    end
   end
 
   def populate_bucket_tasks(bucket_tasks)
@@ -40,5 +38,8 @@ class JiraBucketTasks
 
   def print_bucket_summary
     puts "Total Bucket Tasks:\t#{@bucket_tasks.size}"
+    @bucket_tasks.each do |task|
+      puts "Booked time to bucket tasks: #{task.key} - #{task.name}: #{Time.at(task.time).utc.strftime('%H:%M:%S')}"
+    end
   end
 end

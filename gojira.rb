@@ -25,15 +25,15 @@ jira_request = JiraRequest.new(config.jira_host, config.jira_username, config.ji
 # end
 # puts JSON.pretty_generate(body)
 
-date = '09/04/2019'
+date = '10/04/2019'
 jira_day = JiraDay.new(jira_request, date)
 jira_day.calculate_missing_time
 jira_day.print_booked_summary
 
 fill_day = JiraBucketTasks.new(jira_request, date)
 fill_day.populate_bucket_tasks(config.jira_bucket_tasks)
-fill_day.print_bucket_summary
 fill_day.fill_day(jira_day.missing_seconds)
+fill_day.print_bucket_summary
 
 # jira_request.book_time_to_issue('INF-370', 900, "2019-04-6T00:00:00.000+0000")
 #
