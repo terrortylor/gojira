@@ -14,7 +14,7 @@ module Gojira
       @bucket_tasks = []
     end
 
-    def fill_day(time)
+    def compute_missing_time(time)
       available_time_units = time / FIFTEEN_MIN_IN_SECS
       sorted_issues = @bucket_tasks.sort! { |x| x.weight }
 
@@ -29,6 +29,10 @@ module Gojira
           end
         end
       end
+    end
+
+    def book_missing_time
+      puts 'Not implemented'
     end
 
     def populate_bucket_tasks(bucket_tasks)

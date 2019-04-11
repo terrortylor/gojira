@@ -1,12 +1,27 @@
 #!/usr/bin/env ruby
 
 require 'gojira/cli'
+require 'thor'
 
-puts 'go gojira!'
-Gojira::Cli.today_summary
-# case ARGV[0]
-# when 'today_summary'
-#   puts 'unpacking'
-# else
-#   puts "Available methods are 'unpack'"
-# end
+# Wrapper class for cli entry point
+class MyCLI < Thor
+  desc 'today', "Print a summary of current day's booked tasks"
+  def today
+    Gojira::Cli.today_summary
+  end
+
+  desc 'booktime [KEY] [TIME]', 'Book time to a ticket for current day'
+  def booktime(key, time)
+    puts "Booking: #{time} to #{key}"
+    Gojira::Cli.book_time(key, time)
+  end
+
+  desc 'filltoday [--dryrun]', 'Fills current day with daily tasks and bucket tasks'
+  option :dryrun, type: :boolean
+  def filltoday
+    puts 'Filling current day with daily and bucket tasks'
+    puts options[:dryrun] ? 'Dry Run' : 'Doing it'
+  end
+end
+
+MyCLI.start(ARGV)

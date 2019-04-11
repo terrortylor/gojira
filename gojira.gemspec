@@ -11,8 +11,8 @@ Gem::Specification.new do |spec|
   spec.homepage      = 'https://github.com/terrortylor/gojira'
   spec.license       = 'MIT'
 
-  spec.files         = Dir.glob('{bin,lib', File::FNM_DOTMATCH)
-  # spec.bindir        = 'bin'
+  spec.files = Dir.glob('{bin,lib}/**/*', File::FNM_DOTMATCH)
+  spec.bindir        = 'bin'
   spec.executables   = %w[gojira]
   spec.require_paths = ['lib']
 

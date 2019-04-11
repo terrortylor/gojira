@@ -7,6 +7,7 @@ Useful references used when working on this project
 * [Ruby http request](https://www.rubyguides.com/2018/08/ruby-http-request/)
 * [httparty](https://github.com/jnunemaker/httparty)
 * [Atlassian API] (https://developer.atlassian.com/cloud/jira/platform/rest/v3/?utm_source=%2Fcloud%2Fjira%2Fplatform%2Frest%2F&utm_medium=302)
+* [thor CLI package... it's niiiice] (http://whatisthor.com/)
 
 # Development
 ## Setup / Run Tests
@@ -15,12 +16,13 @@ bundle install
 bundle exec rake
 ```
 
-# Build and Install
+## Build and Install
 ```
 bundle exec rake gem:build
 bundle exec rake gem:install
 ```
 
+# Usage
 # Config File
 Depends on having a username and API key to work with Atlassian, these are loaded from a config file: ~/.gojira.yml
 ```
@@ -47,11 +49,11 @@ With 3 hours to book:
  - Done work: 2h 30m
  - Not done work: 30m
 
-## Get Summary of a given Day
-The following is an example of calculatng a summary of time booked to a day:
+## Commands
 ```
-config = Config.instance
-jira_request = JiraRequest.new(config.jira_host, config.jira_username, config.jira_api_key)
-fill_day = FillDay.new(jira_request, '2019/04/04')
-fill_day.calculate_missing_time
+Commands:
+  gojira booktime [KEY] [TIME]  # Book time to a ticket for current day
+  gojira filltoday [--dryrun]   # Fills current day with daily tasks and bucket tasks
+  gojira help [COMMAND]         # Describe available commands or one specific command
+  gojira today                  # Print a summary of current day's booked tasks
 ```

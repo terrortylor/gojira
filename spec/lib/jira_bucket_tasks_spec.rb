@@ -23,9 +23,9 @@ describe Gojira::JiraBucketTasks do
     end
   end
 
-  context 'fill_day' do
+  context 'compute_missing_time' do
     it 'Should book all time to max weighted Task' do
-      test_obj.fill_day(1800)
+      test_obj.compute_missing_time(1800)
 
       expect(test_obj.bucket_tasks[0].key).to eq('KEY-888')
       expect(test_obj.bucket_tasks[0].time).to eq(1800) # 900 (15m) * 2
@@ -35,7 +35,7 @@ describe Gojira::JiraBucketTasks do
     end
 
     it 'Should book time to all tasks if exactly enought' do
-      test_obj.fill_day(13_500) # 900 (15m) * 15 (total weight of issues)
+      test_obj.compute_missing_time(13_500) # 900 (15m) * 15 (total weight of issues)
 
       expect(test_obj.bucket_tasks[0].key).to eq('KEY-888')
       expect(test_obj.bucket_tasks[0].time).to eq(9_000) # # 900 (15m) * 10
@@ -45,7 +45,7 @@ describe Gojira::JiraBucketTasks do
     end
 
     it 'Should continue to book time to tickets until all used up' do
-      test_obj.fill_day(18_000) # 900 (15m) * 20 (total weight of issues)
+      test_obj.compute_missing_time(18_000) # 900 (15m) * 20 (total weight of issues)
 
       expect(test_obj.bucket_tasks[0].key).to eq('KEY-888')
       expect(test_obj.bucket_tasks[0].time).to eq(13_500) # 900 (15m) * 10 + 900 (15m) * 5
@@ -55,7 +55,7 @@ describe Gojira::JiraBucketTasks do
     end
 
     it 'Should book remaining time to given task if less than item weight' do
-      test_obj.fill_day(15_300) # 900 (15m) * 17 (total weight of issues)
+      test_obj.compute_missing_time(15_300) # 900 (15m) * 17 (total weight of issues)
 
       expect(test_obj.bucket_tasks[0].key).to eq('KEY-888')
       expect(test_obj.bucket_tasks[0].time).to eq(10_800) # 900 (15m) * 10 + 900 (15m) * 2
