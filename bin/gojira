@@ -1,12 +1,14 @@
 #!/usr/bin/env ruby
 
 require 'gojira/cli'
+require 'rainbow'
 require 'thor'
 
 # Wrapper class for cli entry point
 class MyCLI < Thor
   desc 'today', "Print a summary of current day's booked tasks"
   def today
+    puts Rainbow('Booked Time Summary').red
     Gojira::Cli.today_summary
   end
 

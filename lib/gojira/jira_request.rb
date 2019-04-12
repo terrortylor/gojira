@@ -39,7 +39,7 @@ module Gojira
     end
 
     def book_time_to_issue(key, time, date)
-      puts "Key: #{key} Time: #{time} Date: #{date}"
+      # puts "Key: #{key} Time: #{time} Date: #{date}"
       HTTParty.post(
         "#{@host}/rest/api/3/issue/#{key}/worklog",
         basic_auth: @basic_auth,

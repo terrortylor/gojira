@@ -1,4 +1,5 @@
 require 'date'
+require 'rainbow'
 
 module Gojira
   # Class to calculate time missing in a day
@@ -29,14 +30,14 @@ module Gojira
     end
 
     def print_booked_summary
-      puts "Day Summary: #{@date}"
-      puts "Found Issues: #{@issues.size}"
+      puts Rainbow("Date:\t\t").red + @date
+      puts Rainbow("Found Issues:\t").red + @issues.size.to_s
       @issues.each do |issue|
-        puts "\tKey: #{issue.key}\tSummary: #{issue.summary} Time booked: #{seconds_to_time(issue.time_booked)}"
+        puts "\tKey: #{issue.key}\tTime booked: #{seconds_to_time(issue.time_booked)}\tSummary: #{issue.summary}"
       end
-      puts "Total time booked:\t#{seconds_to_time(@total_seconds)}"
-      puts "Total time to book:\t#{seconds_to_time(SECONDS_IN_DAY)}"
-      puts "Missing time:\t\t#{seconds_to_time(@missing_seconds)}"
+      puts Rainbow("Total time booked:\t").red + seconds_to_time(@total_seconds)
+      puts Rainbow("Total time to book:\t").red + seconds_to_time(SECONDS_IN_DAY)
+      puts Rainbow("Missing time:\t\t").red + seconds_to_time(@missing_seconds)
     end
 
     def request_issue_worklog(key)

@@ -47,6 +47,7 @@ PLATFORMS
 
 DEPENDENCIES
   httparty (~> 0.16.4)
+  rainbow (~> 3.0.0)
   rake (~> 12.3.2)
   rspec (~> 3.8.0)
   rubocop (~> 0.66.0)
