@@ -6,8 +6,8 @@ Useful references used when working on this project
 
 * [Ruby http request](https://www.rubyguides.com/2018/08/ruby-http-request/)
 * [httparty](https://github.com/jnunemaker/httparty)
-* [Atlassian API] (https://developer.atlassian.com/cloud/jira/platform/rest/v3/?utm_source=%2Fcloud%2Fjira%2Fplatform%2Frest%2F&utm_medium=302)
-* [thor CLI package... it's niiiice] (http://whatisthor.com/)
+* [Atlassian API](https://developer.atlassian.com/cloud/jira/platform/rest/v3/?utm_source=%2Fcloud%2Fjira%2Fplatform%2Frest%2F&utm_medium=302)
+* [thor CLI package... it's niiiice](http://whatisthor.com/)
 
 # Development
 ## Setup / Run Tests

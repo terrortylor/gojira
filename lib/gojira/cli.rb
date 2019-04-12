@@ -8,7 +8,7 @@ module Gojira
   class Cli
     class << self
       def today_summary
-        config = Gojira::Config.instance
+        config = Gojira::Config.new
         jira_request = Gojira::JiraRequest.new(config.jira_host, config.jira_username, config.jira_api_key)
         date = Time.now.strftime('%d/%m/%Y')
         jira_day = JiraDay.new(jira_request, date, config.jira_username)
@@ -17,7 +17,7 @@ module Gojira
       end
 
       def book_time(key, time)
-        config = Gojira::Config.instance
+        config = Gojira::Config.new
         jira_request = Gojira::JiraRequest.new(config.jira_host, config.jira_username, config.jira_api_key)
         date_time = Time.now.strftime('%Y-%m-%dT23:05:00.000+0000')
         jira_request.book_time_to_issue(key, time, date_time)
@@ -28,7 +28,7 @@ module Gojira
       end
 
       def bucket_fill_day(date, dry_run)
-        config = Gojira::Config.instance
+        config = Gojira::Config.new
         jira_request = Gojira::JiraRequest.new(config.jira_host, config.jira_username, config.jira_api_key)
         jira_day = JiraDay.new(jira_request, date, config.jira_username)
         jira_day.calculate_missing_time

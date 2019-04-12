@@ -25,3 +25,7 @@ Style/SymbolProc:
   Exclude:
     - 'lib/jira_bucket_tasks.rb'
     - 'lib/gojira/jira_bucket_tasks.rb'
+
+Style/RescueStandardError:
+  Exclude:
+    - 'lib/gojira/config.rb'

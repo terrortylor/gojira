@@ -1,22 +1,17 @@
-require 'json'
-require 'singleton'
 require 'yaml'
 
 module Gojira
-  # Configuration management class
+  # Configuration loading class
   class Config
-    include Singleton
     DEFAULT_CONFIG_FILE = '~/.gojira.yml'.freeze
     attr_reader :config
 
-    def initialize
-      if @config.nil?
-        file_path = File.expand_path(DEFAULT_CONFIG_FILE)
-        config_file = File.read(file_path)
-        raise "Issue opening config file: #{file_path}" if config_file.nil?
-
-        @config = YAML.load(config_file)
-      end
+    def initialize(config_path = nil)
+      file_path = File.expand_path(config_path || DEFAULT_CONFIG_FILE)
+      config_file = File.read(file_path)
+      @config = YAML.load(config_file)
+    rescue
+      raise "Issue loading config file: #{file_path}"
     end
 
     def jira_host

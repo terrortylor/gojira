@@ -65,7 +65,7 @@ module Gojira
     def calculate_worklogs(issue_worklog)
       issue_total_seconds = 0
       issue_worklog['worklogs'].each do |worklog|
-        date = DateTime.parse(worklog['started'])
+        date = Date.parse(worklog['started'])
         formatted_date = date.strftime('%Y/%m/%d')
         issue_total_seconds += worklog['timeSpentSeconds'] if worklog['author']['emailAddress'].eql?(@email_address) && formatted_date.eql?(@date)
       end

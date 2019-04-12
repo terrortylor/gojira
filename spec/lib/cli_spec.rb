@@ -1,13 +1,14 @@
 require 'gojira/cli'
 require 'rspec'
+require 'yaml'
 
 describe Gojira::Cli do
-  let(:test_config_path) { File.expand_path('spec/test_data/config.yml') }
+  let(:test_config_file) { File.expand_path('spec/test_data/config.yml') }
   let(:test_date) { '10/04/2019' }
 
   before do
-    allow(File).to receive(:expand_path).with('~/.gojira.yml').and_return(test_config_path)
-    @test_config = Gojira::Config.instance
+    @test_config = Gojira::Config.new(test_config_file)
+    allow(File).to receive(:expand_path).with('~/.gojira.yml').and_return(test_config_file)
   end
 
   context 'today_summary' do
@@ -18,7 +19,7 @@ describe Gojira::Cli do
       allow(Time).to receive(:now).and_return(date_double)
       allow(date_double).to receive(:strftime).with('%d/%m/%Y').and_return(test_date)
 
-      expect(Gojira::Config).to receive(:instance).and_call_original
+      expect(Gojira::Config).to receive(:new).and_call_original
       expect(Gojira::JiraRequest).to receive(:new).with(@test_config.jira_host, @test_config.jira_username, @test_config.jira_api_key)
       expect(jira_day_double).to receive(:calculate_missing_time)
       expect(jira_day_double).to receive(:print_booked_summary)
@@ -38,7 +39,7 @@ describe Gojira::Cli do
       allow(Time).to receive(:now).and_return(date_double)
       allow(date_double).to receive(:strftime).with('%Y-%m-%dT23:05:00.000+0000').and_return(test_date_time)
 
-      expect(Gojira::Config).to receive(:instance).and_call_original
+      expect(Gojira::Config).to receive(:new).and_call_original
       expect(jira_request_double).to receive(:book_time_to_issue).with('KEY-999', '15m', test_date_time)
 
       Gojira::Cli.book_time('KEY-999', '15m')
@@ -68,7 +69,7 @@ describe Gojira::Cli do
       allow(jira_day_double).to receive(:calculate_missing_time)
       allow(jira_day_double).to receive(:missing_seconds).and_return(900)
 
-      expect(Gojira::Config).to receive(:instance).and_call_original
+      expect(Gojira::Config).to receive(:new).and_call_original
       expect(Gojira::JiraRequest).to receive(:new).with(@test_config.jira_host, @test_config.jira_username, @test_config.jira_api_key)
       expect(jira_bucket_task_double).to receive(:populate_bucket_tasks).with(@test_config.jira_bucket_tasks)
       expect(jira_bucket_task_double).to receive(:compute_missing_time).with(900)
@@ -86,7 +87,7 @@ describe Gojira::Cli do
       allow(jira_day_double).to receive(:calculate_missing_time)
       allow(jira_day_double).to receive(:missing_seconds).and_return(900)
 
-      expect(Gojira::Config).to receive(:instance).and_call_original
+      expect(Gojira::Config).to receive(:new).and_call_original
       expect(Gojira::JiraRequest).to receive(:new).with(@test_config.jira_host, @test_config.jira_username, @test_config.jira_api_key)
       expect(jira_bucket_task_double).to receive(:populate_bucket_tasks).with(@test_config.jira_bucket_tasks)
       expect(jira_bucket_task_double).to receive(:compute_missing_time).with(900)
