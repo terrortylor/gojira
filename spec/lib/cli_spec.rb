@@ -14,7 +14,7 @@ describe Gojira::Cli do
   context 'today_summary' do
     it 'Should print a summary of the current days time booked' do
       jira_day_double = double('JiraDay')
-      allow(Gojira::JiraDay).to receive(:new).with(anything, test_date, @test_config.jira_username).and_return(jira_day_double)
+      allow(Gojira::JiraDaySummary).to receive(:new).with(anything, test_date, @test_config.jira_username).and_return(jira_day_double)
       date_double = double('Date')
       allow(Time).to receive(:now).and_return(date_double)
       allow(date_double).to receive(:strftime).with('%d/%m/%Y').and_return(test_date)
@@ -65,7 +65,7 @@ describe Gojira::Cli do
       jira_bucket_task_double = double('JiraBucketTasks')
       allow(Gojira::JiraBucketTasks).to receive(:new).with(anything, test_date).and_return(jira_bucket_task_double)
       jira_day_double = double('JiraDay')
-      allow(Gojira::JiraDay).to receive(:new).with(anything, test_date, @test_config.jira_username).and_return(jira_day_double)
+      allow(Gojira::JiraDaySummary).to receive(:new).with(anything, test_date, @test_config.jira_username).and_return(jira_day_double)
       allow(jira_day_double).to receive(:calculate_missing_time)
       allow(jira_day_double).to receive(:missing_seconds).and_return(900)
 
@@ -83,7 +83,7 @@ describe Gojira::Cli do
       jira_bucket_task_double = double('JiraBucketTasks')
       allow(Gojira::JiraBucketTasks).to receive(:new).with(anything, test_date).and_return(jira_bucket_task_double)
       jira_day_double = double('JiraDay')
-      allow(Gojira::JiraDay).to receive(:new).with(anything, test_date, @test_config.jira_username).and_return(jira_day_double)
+      allow(Gojira::JiraDaySummary).to receive(:new).with(anything, test_date, @test_config.jira_username).and_return(jira_day_double)
       allow(jira_day_double).to receive(:calculate_missing_time)
       allow(jira_day_double).to receive(:missing_seconds).and_return(900)
 

@@ -4,7 +4,7 @@ require 'rainbow'
 module Gojira
   # Class to calculate time missing in a day
   # and assign time to a series of bucket tasks
-  class JiraDay
+  class JiraDaySummary
     SECONDS_IN_DAY = 28_800
     Issue = Struct.new(:key, :summary, :time_booked)
     attr_reader :date, :issues, :total_seconds, :missing_seconds

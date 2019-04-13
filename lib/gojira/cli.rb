@@ -1,6 +1,6 @@
 require 'gojira/config'
 require 'gojira/jira_request'
-require 'gojira/jira_day'
+require 'gojira/jira_day_summary'
 require 'gojira/jira_bucket_tasks'
 
 module Gojira
@@ -11,7 +11,7 @@ module Gojira
         config = Gojira::Config.new
         jira_request = Gojira::JiraRequest.new(config.jira_host, config.jira_username, config.jira_api_key)
         date = Time.now.strftime('%d/%m/%Y')
-        jira_day = JiraDay.new(jira_request, date, config.jira_username)
+        jira_day = JiraDaySummary.new(jira_request, date, config.jira_username)
         jira_day.calculate_missing_time
         jira_day.print_booked_summary
       end
@@ -30,7 +30,7 @@ module Gojira
       def bucket_fill_day(date, dry_run)
         config = Gojira::Config.new
         jira_request = Gojira::JiraRequest.new(config.jira_host, config.jira_username, config.jira_api_key)
-        jira_day = JiraDay.new(jira_request, date, config.jira_username)
+        jira_day = JiraDaySummary.new(jira_request, date, config.jira_username)
         jira_day.calculate_missing_time
         fill_day = Gojira::JiraBucketTasks.new(jira_request, date)
         fill_day.populate_bucket_tasks(config.jira_bucket_tasks)

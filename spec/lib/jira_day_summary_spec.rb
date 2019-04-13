@@ -1,12 +1,12 @@
-require 'gojira/jira_day'
+require 'gojira/jira_day_summary'
 require 'gojira/jira_request'
 require 'rspec'
 
-describe Gojira::JiraDay do
+describe Gojira::JiraDaySummary do
   let(:test_date) { '01/04/2019' }
   let(:query_test_date) { '2019/04/01' }
   let(:jira_request_double) { double('JiraRequest') }
-  let(:test_obj) { Gojira::JiraDay.new(jira_request_double, test_date, 'alex.tylor@widget.com') }
+  let(:test_obj) { Gojira::JiraDaySummary.new(jira_request_double, test_date, 'alex.tylor@widget.com') }
 
   context 'initialize' do
     it 'Should raise exception when search not 200' do
