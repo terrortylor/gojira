@@ -5,8 +5,8 @@ require 'rspec'
 describe Gojira::JiraBucketTasks do
   let(:bucket_config) do
     [
-      { 'name' => 'Bucket task 1', 'key' => 'KEY-999', 'weight' => 5 },
-      { 'name' => 'Bucket task 2', 'key' => 'KEY-888', 'weight' => 10 }
+      { 'name' => 'Bucket task 1', 'issue_key' => 'KEY-999', 'weight' => 5 },
+      { 'name' => 'Bucket task 2', 'issue_key' => 'KEY-888', 'weight' => 10 }
     ]
   end
   let(:test_date) { '1/4/2019' }
@@ -27,40 +27,40 @@ describe Gojira::JiraBucketTasks do
     it 'Should book all time to max weighted Task' do
       test_obj.compute_missing_time(1800)
 
-      expect(test_obj.bucket_tasks[0].key).to eq('KEY-888')
+      expect(test_obj.bucket_tasks[0].issue_key).to eq('KEY-888')
       expect(test_obj.bucket_tasks[0].time).to eq(1800) # 900 (15m) * 2
 
-      expect(test_obj.bucket_tasks[1].key).to eq('KEY-999')
+      expect(test_obj.bucket_tasks[1].issue_key).to eq('KEY-999')
       expect(test_obj.bucket_tasks[1].time).to eq(0)
     end
 
     it 'Should book time to all tasks if exactly enought' do
       test_obj.compute_missing_time(13_500) # 900 (15m) * 15 (total weight of issues)
 
-      expect(test_obj.bucket_tasks[0].key).to eq('KEY-888')
+      expect(test_obj.bucket_tasks[0].issue_key).to eq('KEY-888')
       expect(test_obj.bucket_tasks[0].time).to eq(9_000) # # 900 (15m) * 10
 
-      expect(test_obj.bucket_tasks[1].key).to eq('KEY-999')
+      expect(test_obj.bucket_tasks[1].issue_key).to eq('KEY-999')
       expect(test_obj.bucket_tasks[1].time).to eq(4_500) # 900 (15m) * 5
     end
 
     it 'Should continue to book time to tickets until all used up' do
       test_obj.compute_missing_time(18_000) # 900 (15m) * 20 (total weight of issues)
 
-      expect(test_obj.bucket_tasks[0].key).to eq('KEY-888')
+      expect(test_obj.bucket_tasks[0].issue_key).to eq('KEY-888')
       expect(test_obj.bucket_tasks[0].time).to eq(13_500) # 900 (15m) * 10 + 900 (15m) * 5
 
-      expect(test_obj.bucket_tasks[1].key).to eq('KEY-999')
+      expect(test_obj.bucket_tasks[1].issue_key).to eq('KEY-999')
       expect(test_obj.bucket_tasks[1].time).to eq(4_500) # 900 (15m) * 5
     end
 
     it 'Should book remaining time to given task if less than item weight' do
       test_obj.compute_missing_time(15_300) # 900 (15m) * 17 (total weight of issues)
 
-      expect(test_obj.bucket_tasks[0].key).to eq('KEY-888')
+      expect(test_obj.bucket_tasks[0].issue_key).to eq('KEY-888')
       expect(test_obj.bucket_tasks[0].time).to eq(10_800) # 900 (15m) * 10 + 900 (15m) * 2
 
-      expect(test_obj.bucket_tasks[1].key).to eq('KEY-999')
+      expect(test_obj.bucket_tasks[1].issue_key).to eq('KEY-999')
       expect(test_obj.bucket_tasks[1].time).to eq(4_500) # 900 (15m) * 5
     end
   end

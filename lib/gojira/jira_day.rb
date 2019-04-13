@@ -30,14 +30,14 @@ module Gojira
     end
 
     def print_booked_summary
-      puts Rainbow("Date:\t\t").red + @date
-      puts Rainbow("Found Issues:\t").red + @issues.size.to_s
+      puts Rainbow("\tDate:\t\t\t").green + @date
+      puts Rainbow("\tFound Issues:\t\t").green + @issues.size.to_s
       @issues.each do |issue|
         puts "\tKey: #{issue.key}\tTime booked: #{seconds_to_time(issue.time_booked)}\tSummary: #{issue.summary}"
       end
-      puts Rainbow("Total time booked:\t").red + seconds_to_time(@total_seconds)
-      puts Rainbow("Total time to book:\t").red + seconds_to_time(SECONDS_IN_DAY)
-      puts Rainbow("Missing time:\t\t").red + seconds_to_time(@missing_seconds)
+      puts Rainbow("\tTotal time booked:\t").green + seconds_to_time(@total_seconds)
+      puts Rainbow("\tTotal time to book:\t").green + seconds_to_time(SECONDS_IN_DAY)
+      puts Rainbow("\tMissing time:\t\t").green + seconds_to_time(@missing_seconds)
     end
 
     def request_issue_worklog(key)

@@ -1,10 +1,11 @@
 require 'date'
+require 'rainbow'
 
 module Gojira
   # Class to fill remaining time in day with bucket tasks
   class JiraBucketTasks
     FIFTEEN_MIN_IN_SECS = 900
-    BucketIssue = Struct.new(:name, :key, :weight, :time)
+    BucketIssue = Struct.new(:name, :issue_key, :weight, :time)
     attr_reader :bucket_tasks
 
     def initialize(jira_request, date)
@@ -32,19 +33,27 @@ module Gojira
     end
 
     def book_missing_time
-      puts 'Not implemented'
+      @bucket_tasks.each do |task|
+        bookable_time = Time.at(task.time).utc.strftime('%Hh %Mm')
+        @jira_request.book_time_to_issue(task['issue_key'], bookable_time, @date) if task.time > 0
+      end
     end
 
     def populate_bucket_tasks(bucket_tasks)
       bucket_tasks.each do |task|
-        @bucket_tasks.push BucketIssue.new(task['name'], task['key'], task['weight'], 0)
+        @bucket_tasks.push BucketIssue.new(task['name'], task['issue_key'], task['weight'], 0)
       end
     end
 
     def print_bucket_summary
-      puts "Total Bucket Tasks:\t#{@bucket_tasks.size}"
-      @bucket_tasks.each do |task|
-        puts "Booked time to bucket tasks: #{task.key} - #{task.name}: #{Time.at(task.time).utc.strftime('%H:%M:%S')}"
+      if @bucket_tasks.any? { |x| x.time > 0 }
+        puts Rainbow("\tApply time adjustments").red
+        @bucket_tasks.each do |task|
+          puts "\t#{task.issue_key}\t#{Time.at(task.time).utc.strftime('%H:%M:%S')}\t- #{task.name}"
+        end
+        puts
+      else
+        puts puts Rainbow("\tDay is fully booked").green
       end
     end
   end

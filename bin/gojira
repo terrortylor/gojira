@@ -8,12 +8,16 @@ require 'thor'
 class MyCLI < Thor
   desc 'today', "Print a summary of current day's booked tasks"
   def today
-    puts Rainbow('Booked Time Summary').red
+    puts Rainbow('Booked Time Summary').green
     Gojira::Cli.today_summary
   end
 
   desc 'booktime [KEY] [TIME]', 'Book time to a ticket for current day'
   def booktime(key, time)
+    reg = /(?:([0-9]+)[hH])?\s?(?:([0-9]+)[mM])?/.match(time)
+    hour = reg[1]
+    minutes = reg[2]
+    puts "Hour: #{hour} Min: #{minutes}"
     puts "Booking: #{time} to #{key}"
     Gojira::Cli.book_time(key, time)
   end
@@ -21,8 +25,22 @@ class MyCLI < Thor
   desc 'filltoday [--dryrun]', 'Fills current day with daily tasks and bucket tasks'
   option :dryrun, type: :boolean
   def filltoday
-    puts 'Filling current day with daily and bucket tasks'
-    puts options[:dryrun] ? 'Dry Run' : 'Doing it'
+    today = Time.now.strftime('%d/%m/%Y')
+    puts Rainbow('Dryrun mode').red if options[:dryrun]
+    puts Rainbow('Filling current day with daily and bucket tasks: ').green + today
+    Gojira::Cli.fill_date(today, options[:dryrun] ? true : false)
+  end
+
+  desc 'fillpreviousweek [--dryrun]', 'Fills previous week, starting from Monday, with daily tasks and bucket tasks'
+  option :dryrun, type: :boolean
+  def fillpreviousweek
+    puts Rainbow('Dryrun mode').red if options[:dryrun]
+    last_monday = Date.parse('Monday')
+    5.times do |i|
+      date = (last_monday + i).strftime('%d/%m/%Y')
+      puts Rainbow("Filling day: #{date}").green
+      Gojira::Cli.fill_date(date, options[:dryrun] ? true : false)
+    end
   end
 end
 
