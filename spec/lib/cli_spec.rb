@@ -64,8 +64,10 @@ describe Gojira::Cli do
     it 'Should print summary of how time will be filled if dry run' do
       jira_bucket_task_double = double('JiraBucketTasks')
       allow(Gojira::JiraBucketTasks).to receive(:new).with(anything, test_date).and_return(jira_bucket_task_double)
+
       jira_day_double = double('JiraDay')
       allow(Gojira::JiraDaySummary).to receive(:new).with(anything, test_date, @test_config.jira_username).and_return(jira_day_double)
+      allow(jira_day_double).to receive(:issues).and_return([])
       allow(jira_day_double).to receive(:calculate_missing_time)
       allow(jira_day_double).to receive(:missing_seconds).and_return(900)
 
@@ -82,17 +84,25 @@ describe Gojira::Cli do
     it 'Should print summary of how time will be filled if not dry run' do
       jira_bucket_task_double = double('JiraBucketTasks')
       allow(Gojira::JiraBucketTasks).to receive(:new).with(anything, test_date).and_return(jira_bucket_task_double)
+
       jira_day_double = double('JiraDay')
       allow(Gojira::JiraDaySummary).to receive(:new).with(anything, test_date, @test_config.jira_username).and_return(jira_day_double)
+      allow(jira_day_double).to receive(:issues).and_return([])
       allow(jira_day_double).to receive(:calculate_missing_time)
+      allow(jira_day_double).to receive(:book_daily_tasks)
       allow(jira_day_double).to receive(:missing_seconds).and_return(900)
 
+      jira_request_double = double('JiraRequest')
+      allow(Gojira::JiraRequest).to receive(:new).with(
+        @test_config.jira_host, @test_config.jira_username, @test_config.jira_api_key
+      ).and_return(jira_request_double)
+
       expect(Gojira::Config).to receive(:new).and_call_original
-      expect(Gojira::JiraRequest).to receive(:new).with(@test_config.jira_host, @test_config.jira_username, @test_config.jira_api_key)
       expect(jira_bucket_task_double).to receive(:populate_bucket_tasks).with(@test_config.jira_bucket_tasks)
       expect(jira_bucket_task_double).to receive(:compute_missing_time).with(900)
       expect(jira_bucket_task_double).to receive(:print_bucket_summary)
       expect(jira_bucket_task_double).to receive(:book_missing_time)
+      expect(jira_request_double).to receive(:book_time_to_issue).with('KEY-99', '15m', '10/04/2019T12:00:00.000+0000')
 
       Gojira::Cli.bucket_fill_day(test_date, false)
     end

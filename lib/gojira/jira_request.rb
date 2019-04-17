@@ -39,13 +39,15 @@ module Gojira
     end
 
     def book_time_to_issue(key, time, date)
+      # TODO: add test for response code
       # puts "Key: #{key} Time: #{time} Date: #{date}"
-      HTTParty.post(
+      response = HTTParty.post(
         "#{@host}/rest/api/3/issue/#{key}/worklog",
         basic_auth: @basic_auth,
         headers: { 'Content-Type': 'application/json' },
         body: { timeSpentSeconds: time, started: date }.to_json
       )
+      puts "Failed post: #{key} #{date} #{time}" if response.code != 200
     end
 
     private

@@ -58,12 +58,14 @@ describe Gojira::JiraRequest do
     end
 
     it 'Should call HTTParty.post with expected values' do
+      response_double = double('response')
       expect(HTTParty).to receive(:post).with(
         'jira.com/rest/api/3/issue/KEY-01/worklog',
         basic_auth: { password: '123abc', username: 'user@widget.com' },
         headers: { 'Content-Type': 'application/json' },
         body: { timeSpentSeconds: 900, started: '2019-04-1T03:05:50.000+0000' }.to_json
-      )
+      ).and_return(response_double)
+      expect(response_double).to receive(:code).and_return 200
 
       test_obj.book_time_to_issue('KEY-01', 900, '2019-04-1T03:05:50.000+0000')
     end

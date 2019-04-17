@@ -40,20 +40,24 @@ module Gojira
     end
 
     def populate_bucket_tasks(bucket_tasks)
+      # TODO: Add test for raise
+      raise 'bucket_tasks is missing from config' if bucket_tasks.nil?
+
       bucket_tasks.each do |task|
         @bucket_tasks.push BucketIssue.new(task['name'], task['issue_key'], task['weight'], 0)
       end
     end
 
     def print_bucket_summary
+      puts Rainbow("\tBucket Tasks:").green
       if @bucket_tasks.any? { |x| x.time > 0 }
-        puts Rainbow("\tApply time adjustments").red
+        puts Rainbow("\t\tApply time adjustments").red
         @bucket_tasks.each do |task|
-          puts "\t#{task.issue_key}\t#{Time.at(task.time).utc.strftime('%H:%M:%S')}\t- #{task.name}"
+          puts "\t\t#{task.issue_key}\t#{Time.at(task.time).utc.strftime('%H:%M:%S')}\t- #{task.name}"
         end
         puts
       else
-        puts puts Rainbow("\tDay is fully booked").green
+        puts puts Rainbow("\t\tDay is fully booked").green
       end
     end
   end

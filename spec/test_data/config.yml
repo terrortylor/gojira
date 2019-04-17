@@ -4,9 +4,9 @@ jira:
   username: user@widget.com
   api_key: 123abc
   daily_tasks:
-      - name: Infra Standup
-        issue_key: KEY-99
-        time: 15m
+    - name: Infra Standup
+      issue_key: KEY-99
+      time: 15m
   bucket_tasks:
     - name: Done work
       issue_key: KEY-10

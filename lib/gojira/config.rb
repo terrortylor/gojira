@@ -29,5 +29,9 @@ module Gojira
     def jira_bucket_tasks
       @config['jira']['bucket_tasks']
     end
+
+    def jira_daily_tasks
+      @config['jira']['daily_tasks']
+    end
   end
 end

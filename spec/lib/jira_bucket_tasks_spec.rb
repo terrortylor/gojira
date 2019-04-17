@@ -64,4 +64,20 @@ describe Gojira::JiraBucketTasks do
       expect(test_obj.bucket_tasks[1].time).to eq(4_500) # 900 (15m) * 5
     end
   end
+
+  context 'book_missing_time' do
+    it 'Should book time to bucket tasks not already booked too' do
+      allow(jira_request_double).to receive(:book_time_to_issue).with('KEY-888', '02h 30m', '1/4/2019T12:00:00.000+0000')
+      allow(jira_request_double).to receive(:book_time_to_issue).with('KEY-999', '01h 15m', '1/4/2019T12:00:00.000+0000')
+
+      test_obj.compute_missing_time(13_500) # 900 (15m) * 15 (total weight of issues)
+      test_obj.book_missing_time
+
+      expect(test_obj.bucket_tasks[0].issue_key).to eq('KEY-888')
+      expect(test_obj.bucket_tasks[0].time).to eq(9_000) # 900 (15m) * 10 = 2h 30m
+
+      expect(test_obj.bucket_tasks[1].issue_key).to eq('KEY-999')
+      expect(test_obj.bucket_tasks[1].time).to eq(4_500) # 900 (15m) * 5 = 1h 15m
+    end
+  end
 end

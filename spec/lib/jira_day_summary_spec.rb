@@ -129,9 +129,9 @@ describe Gojira::JiraDaySummary do
       test_obj.populate_issues response_body
 
       expect(test_obj.issues.size).to eq(2)
-      expect(test_obj.issues[0].key).to eq('KEY-01')
+      expect(test_obj.issues[0].issue_key).to eq('KEY-01')
       expect(test_obj.issues[0].time_booked).to eq(900)
-      expect(test_obj.issues[1].key).to eq('KEY-02')
+      expect(test_obj.issues[1].issue_key).to eq('KEY-02')
       expect(test_obj.issues[1].time_booked).to eq(2700)
     end
   end

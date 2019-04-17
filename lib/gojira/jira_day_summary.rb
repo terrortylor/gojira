@@ -6,7 +6,7 @@ module Gojira
   # and assign time to a series of bucket tasks
   class JiraDaySummary
     SECONDS_IN_DAY = 28_800
-    Issue = Struct.new(:key, :summary, :time_booked)
+    Issue = Struct.new(:issue_key, :summary, :time_booked)
     attr_reader :date, :issues, :total_seconds, :missing_seconds
 
     def initialize(jira_request, date, email_address)
@@ -30,19 +30,20 @@ module Gojira
     end
 
     def print_booked_summary
+      # TODO: Date should not be stupid american format
       puts Rainbow("\tDate:\t\t\t").green + @date
       puts Rainbow("\tFound Issues:\t\t").green + @issues.size.to_s
       @issues.each do |issue|
-        puts "\tKey: #{issue.key}\tTime booked: #{seconds_to_time(issue.time_booked)}\tSummary: #{issue.summary}"
+        puts "\tKey: #{issue.issue_key}\tTime booked: #{seconds_to_time(issue.time_booked)}\tSummary: #{issue.summary}"
       end
       puts Rainbow("\tTotal time booked:\t").green + seconds_to_time(@total_seconds)
       puts Rainbow("\tTotal time to book:\t").green + seconds_to_time(SECONDS_IN_DAY)
       puts Rainbow("\tMissing time:\t\t").green + seconds_to_time(@missing_seconds)
     end
 
-    def request_issue_worklog(key)
-      response = @jira_request.get_issue_worklog(key)
-      raise "Response not 200, can't get issue: #{key}" unless response.code == 200
+    def request_issue_worklog(issue_key)
+      response = @jira_request.get_issue_worklog(issue_key)
+      raise "Response not 200, can't get issue: #{issue_key}" unless response.code == 200
 
       JSON.parse(response.body)
     end
